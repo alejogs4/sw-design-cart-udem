@@ -1,9 +1,8 @@
 export class Product {
-
-  public SKU: string;
-  public name: string;
-  public availableUnits: number;
-  public price: number;
+  private SKU: string;
+  private name: string;
+  private availableUnits: number;
+  private price: number;
 
   constructor(SKU: string, name: string, availableUnits: number, price: number) {
     this.SKU = SKU;
@@ -18,5 +17,9 @@ export class Product {
 
   public discountUnits(quantity: number): void {
     this.availableUnits -= quantity;
+  }
+
+  public getSKU(): string {
+    return this.SKU
   }
 }

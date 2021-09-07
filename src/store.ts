@@ -9,6 +9,7 @@ export class Store {
   constructor(productLoader: ProductLoader) {
     this.incomes = 0;
     this.productLoader = productLoader;
+    this.inventory = [];
     this.loadProducts();
   }
 
@@ -16,7 +17,7 @@ export class Store {
     this.incomes += income;
   }
 
-  private loadProducts(): void {
-    this.inventory = this.productLoader.loadProducts();
+  public async loadProducts(): Promise<void> {
+    this.inventory = await this.productLoader.loadProducts();
   }
 }

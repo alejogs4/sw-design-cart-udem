@@ -1,5 +1,5 @@
 import { Product } from "./product";
 
 export interface ProductLoader {
-  loadProducts(): Product[]
+  loadProducts(): Promise<Product[]>
 }
