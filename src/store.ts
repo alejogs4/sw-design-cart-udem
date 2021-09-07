@@ -1,3 +1,6 @@
+import { Product } from "./product";
+import { ProductLoader } from "./product-loader";
+
 export class Store {
   public incomes: number;
   private productLoader: ProductLoader;
