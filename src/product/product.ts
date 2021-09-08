@@ -1,3 +1,10 @@
+export type ProductDTO =  {
+  SKU: string;
+  name: string;
+  availableUnits: number;
+  price: number;
+}
+
 export class Product {
   private SKU: string;
   private name: string;

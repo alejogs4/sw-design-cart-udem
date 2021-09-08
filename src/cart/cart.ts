@@ -64,9 +64,9 @@ export class Cart extends EventEmitter {
   }
 
   public buyCart() {
-      this.emit('boughtCar', {
+      this.emit('boughtCart', {
         finalPrice: this.calculateFinalCartPrice(),
-        cartProducts: this.cartProducts
+        cartProducts: [...this.cartProducts]
       })
       this.cartProducts = [];
   }

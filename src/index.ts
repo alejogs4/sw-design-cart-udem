@@ -8,5 +8,9 @@ import { User } from './user'
   await store.loadProducts()
 
   const userID = uuidv4()
-  const user = new User(userID)
+  const user = new User(userID, store)
+
+  user.addProductToCart('', 10)
+  user.addProductToCart('', 10)
+  user.addProductToCart('', 10)
 })()
