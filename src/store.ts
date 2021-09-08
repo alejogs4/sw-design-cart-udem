@@ -1,5 +1,5 @@
-import { Product } from "./product";
-import { ProductLoader } from "./product-loader";
+import { Product } from "./product/product";
+import { ProductLoader } from "./product/product-loader";
 
 export class Store {
   public incomes: number;
@@ -10,7 +10,6 @@ export class Store {
     this.incomes = 0;
     this.productLoader = productLoader;
     this.inventory = [];
-    this.loadProducts();
   }
 
   public addIncomes(income: number): void {
