@@ -2,13 +2,14 @@ export class Product {
   private SKU: string;
   private name: string;
   private availableUnits: number;
-  private price: number;
+  private _price: number;
+  
 
   constructor(SKU: string, name: string, availableUnits: number, price: number) {
     this.SKU = SKU;
     this.name = name;
     this.availableUnits = availableUnits;
-    this.price = price;
+    this._price = price;
   }
 
   public validateExistence(quantity: number): boolean {
@@ -22,4 +23,9 @@ export class Product {
   public getSKU(): string {
     return this.SKU
   }
+
+  public get price(): number {
+    return this._price;
+  }
+  
 }

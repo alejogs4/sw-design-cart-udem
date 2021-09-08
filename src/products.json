@@ -1,0 +1,38 @@
+[
+	{
+		"SKU": "EA-1111",
+		"name": "Toilet paper",
+		"availableUnits": 10,
+		"price": 2000
+	},
+	{
+		"SKU": "WE-2222",
+		"name": "Potato",
+		"availableUnits": 5000,
+		"price": 1
+	},
+	{
+		"SKU": "SP-3333",
+		"name": "Coca-Cola",
+		"availableUnits": 15,
+		"price": 2500
+	},
+	{
+		"SKU": "EA-4444",
+		"name": "Ham",
+		"availableUnits": 10,
+		"price": 2000
+	},
+	{
+		"SKU": "EA-1113",
+		"name": "Industrial Turbine",
+		"availableUnits": 10,
+		"price": 1000000
+	},
+	{
+		"SKU": "WE-1113",
+		"name": "Teddy Bear",
+		"availableUnits": 1000,
+		"price": 10
+	}
+]

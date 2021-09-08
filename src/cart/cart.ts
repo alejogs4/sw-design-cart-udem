@@ -1,23 +1,23 @@
 // @packages
 import { v4 as uuidv4 } from "uuid";
 
-import { CalculatorNormal } from "./calculator-normal";
-import { CalculatorSpecialPrice } from "./calculator-special-price";
-import { CalculatorWeight } from "./calculator-weight";
+import { CalculatorNormal } from "../calculator/calculator-normal";
+import { CalculatorSpecialPrice } from "../calculator/calculator-special-price";
+import { CalculatorWeight } from "../calculator/calculator-weight";
 import { CartProduct } from "./cart-product";
-import { PriceCalculator } from "./price-calculator";
-import { Product } from "./product";
+import { PriceCalculator } from "../calculator/price-calculator";
+import { Product } from "../product/product";
+import EventEmitter from "events";
 
-export class Cart {
-  public id: string;
+export class Cart extends EventEmitter {
+  private id: string;
   private cartProducts: CartProduct[];
 
   constructor(id: string) {
+    super({})
     this.id = id;
     this.cartProducts = [];
   }
-
-  // public listProducts():
 
   public addProduct(product: Product, quantity: number) {
     const productSKU = product.getSKU();
@@ -26,9 +26,16 @@ export class Cart {
       (cartProduct) => cartProduct.product.getSKU() === productSKU
     );
     if (productIndex !== -1) {
+      const cartProduct = this.cartProducts[productIndex]
+      const isEnoughQuantity = cartProduct.product.validateExistence(cartProduct.getQuantity() + quantity)
+      if (!isEnoughQuantity) throw new Error('Invalid Product')
+
       this.cartProducts[productIndex].addQuantity(quantity);
       return;
     }
+
+    const isEnoughQuantity = product.validateExistence(quantity)
+    if (!isEnoughQuantity) throw new Error('Invalid Product')
 
     const priceCalculator = this.createPriceCalculator(productSKU);
     const cartProductID = uuidv4();
@@ -54,6 +61,18 @@ export class Cart {
     return this.cartProducts.reduce((finalPrice, cartProduct) => {
       return finalPrice + cartProduct.calculateFinalPrice();
     }, 0);
+  }
+
+  public buyCart() {
+      this.emit('boughtCar', {
+        finalPrice: this.calculateFinalCartPrice(),
+        cartProducts: this.cartProducts
+      })
+      this.cartProducts = [];
+  }
+
+  public listProducts(): CartProduct[] {
+      return this.cartProducts;
   }
 
   private createPriceCalculator(productSKU: string): PriceCalculator {

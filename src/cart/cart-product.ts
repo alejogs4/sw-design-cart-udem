@@ -1,5 +1,5 @@
-import { Product } from './product';
-import { PriceCalculator } from './price-calculator';
+import { Product } from '../product/product';
+import { PriceCalculator } from '../calculator/price-calculator';
 
 export class CartProduct {
 	public id: string;
@@ -17,6 +17,10 @@ export class CartProduct {
 	public calculateFinalPrice(): number {
 		return this.priceCalculator.calculateFinalPrice(this.product, this.quantity);
 	}
+
+    public getQuantity() {
+        return this.quantity
+    }
 
 	public addQuantity(quantity: number) {
 		this.quantity += quantity;
